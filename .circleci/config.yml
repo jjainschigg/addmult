@@ -12,10 +12,9 @@ jobs:
             - run: npm install
             - run: npm test
   dockerize:
+    executor: machine
     steps:
-      - setup_remote_docker
-      - run: docker build -f add/Dockerfile add:1.1
-
+      - run: docker build -f add/Dockerfile -t /jjainschigg/add:$CIRCLE_BRANCH .
 workflows:
     build-and-test:
       jobs:
