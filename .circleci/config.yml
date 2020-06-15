@@ -15,6 +15,7 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
+      - checkout
       - run: docker build -f Dockerfile.add -t docker.io/jjainschigg/add:$CIRCLE_BRANCH .
 workflows:
     build-and-test:
