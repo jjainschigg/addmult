@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: add-deployment
+  labels:
+    app: add
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: add
+  template:
+    metadata:
+      labels:
+        app: add
+    spec:
+      containers:
+      - name: add
+        image: docker.io/jjainschigg/add:1.0
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: 5m
+      nodeSelector:
+        beta.kubernetes.io/os: linux

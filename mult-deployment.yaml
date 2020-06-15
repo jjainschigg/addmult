@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mult-deployment
+  labels:
+    app: mult
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mult
+  template:
+    metadata:
+      labels:
+        app: mult
+    spec:
+      containers:
+      - name: mult
+        image: docker.io/jjainschigg/mult:1.0
+        ports:
+        - containerPort: 8001
+        resources:
+          requests:
+            cpu: 5m
+      nodeSelector:
+        beta.kubernetes.io/os: linux
