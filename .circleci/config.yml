@@ -11,7 +11,15 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+  dockerize:
+    steps:
+      - setup_remote_docker
+      - run: docker build -f add/Dockerfile add:1.1
+
 workflows:
     build-and-test:
       jobs:
         - build-and-test
+    dockerize:
+      jobs:
+        - dockerize
